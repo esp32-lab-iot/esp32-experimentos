@@ -1,0 +1,22 @@
+# Arquivos temporários
+*~
+*.swp
+*.tmp
+
+# Python
+__pycache__/
+*.pyc
+
+# VSCode
+.vscode/
+
+# Arduino build
+build/
+*.o
+*.a
+*.elf
+*.bin
+
+# Sistema
+.DS_Store
+Thumbs.db
