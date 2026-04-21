@@ -4,35 +4,35 @@ Este tutorial apresenta, de forma simples e passo a passo, como preparar a Ardui
 
 ---
 
-## Objetivo
+## 🎯 Objetivo
 
 Ao final deste tutorial, você deverá ser capaz de:
 
-- instalar ou abrir a Arduino IDE;
-- adicionar o suporte às placas ESP32;
-- selecionar corretamente a placa;
-- identificar a porta serial;
-- compilar e enviar um primeiro programa para a placa.
+- Instalar ou abrir a Arduino IDE;
+- Adicionar o suporte às placas ESP32;
+- Selecionar corretamente a placa;
+- Identificar a porta serial;
+- Compilar e enviar um primeiro programa para a placa.
 
 ---
 
-## O que você vai precisar
+## 🛠️ O que você vai precisar
 
-- 1 placa ESP32;
-- 1 cabo USB compatível com transmissão de dados;
-- 1 computador com a Arduino IDE instalada;
-- conexão com a internet para instalar o pacote das placas.
+- **1 placa ESP32** (Qualquer modelo da família);
+- **1 cabo USB** compatível com transmissão de dados;
+- **1 computador** com a Arduino IDE instalada;
+- **Conexão com a internet** para baixar os pacotes.
 
-> Atenção: alguns cabos USB servem apenas para alimentação e **não transmitem dados**.  
-> Se a placa não aparecer no computador, o problema pode ser o cabo.
+> ⚠️ **Atenção:** Alguns cabos USB servem apenas para alimentação e **não transmitem dados**. Se a placa não aparecer no computador, o problema pode ser o cabo.
 
 ---
 
 ## Etapa 1 — Abrir a Arduino IDE
 
-Abra a Arduino IDE no seu computador.
+Abra a Arduino IDE no seu computador. Ao iniciar, você verá a janela principal onde o código (sketch) é escrito.
 
-Ao iniciar, você verá a janela principal do ambiente de programação.
+**Caminho de acesso:**
+> Menu Iniciar / Aplicativos > Arduino IDE
 
 **Espaço para imagem/GIF:**
 ![Abrindo a Arduino IDE](docs/imagens/arduino-ide-abertura.gif)
@@ -41,17 +41,10 @@ Ao iniciar, você verá a janela principal do ambiente de programação.
 
 ## Etapa 2 — Abrir as preferências
 
-No menu superior, acesse:
+Para adicionar o suporte ao ESP32, precisamos indicar à IDE onde encontrar os arquivos de instalação da fabricante (Espressif).
 
-**File > Preferences**  
-ou, em português, dependendo da instalação:  
-**Arquivo > Preferências**
-
-Nesta janela, localize o campo:
-
-**Additional Boards Manager URLs**
-
-É nesse campo que será informado o endereço para instalação do suporte ao ESP32.
+**Caminho de acesso:**
+> **File > Preferences** (ou Arquivo > Preferências)
 
 **Espaço para imagem/GIF:**
 ![Abrindo as preferências](docs/imagens/arduino-ide-preferencias.gif)
@@ -60,91 +53,61 @@ Nesta janela, localize o campo:
 
 ## Etapa 3 — Adicionar a URL das placas ESP32
 
-No campo **Additional Boards Manager URLs**, adicione a seguinte URL:
+No campo **Additional Boards Manager URLs**, você deve colar o link oficial do repositório de placas.
 
-```text
-https://espressif.github.io/arduino-esp32/package_esp32_index.json
+**URL para copiar:**
+`https://github.io`
 
-## Etapa 4 — Abrir o Gerenciador de Placas
+**Espaço para imagem/GIF:**
+![Configurando a URL](docs/imagens/arduino-ide-url.gif)
 
-Agora vá até:
+---
 
-**Tools > Board > Boards Manager**  
-ou  
-**Ferramentas > Placa > Gerenciador de Placas**
+## Etapa 4 — Instalar o pacote no Gerenciador de Placas
 
-Na caixa de busca, digite:
+Agora que a IDE sabe onde procurar, vamos realizar a instalação física dos arquivos de compilação.
 
-```text
-esp32
+**Caminho de acesso:**
+> **Tools > Board > Boards Manager...** (Ferramentas > Placa > Gerenciador de Placas)
 
-Localize o pacote das placas ESP32, normalmente associado à Espressif Systems
+No campo de busca, digite **esp32**. Localize o pacote da **Espressif Systems** e clique no botão **Install**.
 
-Clique em Install
+**Espaço para imagem/GIF:**
+![Instalando o pacote](docs/imagens/arduino-ide-instalacao.gif)
 
-## Etapa 5 — Conectar a placa ESP32 ao computador
+---
 
-Conecte a placa ESP32 ao computador utilizando um cabo USB adequado.
+## Etapa 5 — Conectar a placa e identificar a porta
 
-> Atenção: alguns cabos USB servem apenas para alimentação elétrica e **não permitem a transmissão de dados**.  
-> Se a placa não for reconhecida pela Arduino IDE, teste outro cabo antes de prosseguir.
+Conecte o ESP32 ao computador via USB. O computador deve atribuir um número de porta para a comunicação.
 
-Ao conectar a placa, observe os seguintes pontos:
+**Caminho de acesso:**
+> **Tools > Port** (Ferramentas > Porta)
 
-- a placa pode acender um LED de alimentação;
-- o sistema operacional deve detectar um novo dispositivo USB;
-- a Arduino IDE poderá disponibilizar uma porta serial correspondente à placa.
+Selecione a porta que aparecer (ex: **COM3**, **COM4** no Windows ou **/dev/ttyUSB0** no Linux). Se a lista estiver cinza, verifique o cabo USB.
 
-Se você estiver usando Linux, é comum que a placa apareça em uma porta como:
+**Espaço para imagem/GIF:**
+![Selecionando a porta](docs/imagens/arduino-ide-conexao.gif)
 
-/dev/ttyUSB0 ou /dev/ttyACM0
+---
 
-Se estiver no Windows, a porta geralmente aparece como: COM3, COM4, COM5
+## Etapa 6 — Selecionar o modelo da placa
 
-Se nada acontecer ao conectar a placa, verifique:
+O último passo é informar à IDE exatamente qual modelo de ESP32 você está usando para garantir a compatibilidade.
 
-    se o cabo USB transmite dados;
+**Caminho de acesso:**
+> **Tools > Board > esp32** (Ferramentas > Placa > esp32)
 
-    se a placa está corretamente conectada;
+Para a maioria das placas de desenvolvimento genéricas (30 ou 38 pinos), utilize a opção padrão:
 
-    se a porta USB do computador está funcionando;
+**Modelo recomendado:**
+`ESP32 Dev Module`
 
-    se o sistema reconheceu o dispositivo.
+**Espaço para imagem/GIF:**
+![Selecionando o modelo](docs/imagens/arduino-ide-selecao-placa.gif)
 
-Espaço para imagem/GIF:
+---
 
-## Etapa 6 — Selecionar a placa correta
+## ✅ Conclusão
 
-Depois de instalar o pacote de placas ESP32, é necessário informar à Arduino IDE qual modelo de placa será utilizado.
-
-No menu superior, acesse:
-
-**Tools > Board**  
-ou  
-**Ferramentas > Placa**
-
-Será exibida uma lista com várias famílias e modelos de placas suportadas.
-
-Procure a seção relacionada ao **ESP32** e selecione a placa correspondente ao seu hardware.
-
-Em muitos casos, especialmente em atividades didáticas com placas genéricas de desenvolvimento, uma opção bastante utilizada é:
-
-```text
-ESP32 Dev Module
-
-
-Se você souber exatamente o modelo da sua placa, selecione o item correspondente.
-Caso não saiba, a opção ESP32 Dev Module costuma funcionar bem como escolha inicial em muitas placas ESP32 de uso educacional e experimental.
-
-Selecionar a placa correta é importante porque essa escolha afeta parâmetros de compilação e envio do programa, como tipo de microcontrolador, velocidade de gravação e configurações internas da placa.
-
-Se a placa errada for escolhida, podem ocorrer problemas como:
-
-    falha no upload do programa;
-
-    funcionamento incorreto do código;
-
-    ausência de comunicação adequada com a placa.
-
-
-
+Sua IDE agora está configurada e pronta para uso! 
